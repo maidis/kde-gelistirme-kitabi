@@ -10,6 +10,7 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * KDE Projelerine Katkı Vermek
 * Yeni Bir KDE Uygulaması Geliştirmek
 * KDE Yerelleştirme Çalışmaları
+* KDE Yazılımlarını Paketlemek
 * Qt
 * QML
 * CMake
