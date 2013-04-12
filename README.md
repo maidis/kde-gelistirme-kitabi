@@ -9,6 +9,7 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * KDE Geliştirme Araçları ve Süreçleri
 * KDE Projelerine Katkı Vermek
 * Yeni Bir KDE Uygulaması Geliştirmek
+* Plasma ve Programcıklar
 * KDE Yerelleştirme Çalışmaları
 * KDE Yazılımlarını Paketlemek
 * Qt
