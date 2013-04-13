@@ -25,3 +25,7 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * http://flossmanuals.net/kde-guide/
 * https://code.google.com/p/kde42qt45book/
 * https://github.com/KINFOO/kde-booklet
+
+**Yararlı Sphinx Belgeleri**
+* http://pedrokroger.net/2012/10/using-sphinx-to-write-books/
+* http://sphinx-doc.org/latest/markup/code.html
