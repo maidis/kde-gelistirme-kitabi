@@ -22,3 +22,5 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * http://sourceforge.net/projects/kde20devel/
 * http://techbase.kde.org/
 * http://flossmanuals.net/kde-guide/
+* https://code.google.com/p/kde42qt45book/
+* https://github.com/KINFOO/kde-booklet
