@@ -26,6 +26,10 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * https://code.google.com/p/kde42qt45book/
 * https://github.com/KINFOO/kde-booklet
 
+**reStructuredText belgeleri**
+* http://svn.pardus.org.tr/uludag/trunk/doc/tr/reStructuredText.rst
+* http://www.istihza.com/py2/restructuredtext.html
+
 **Yararlı Sphinx Belgeleri**
 * http://pedrokroger.net/2012/10/using-sphinx-to-write-books/
 * http://sphinx-doc.org/latest/markup/code.html
