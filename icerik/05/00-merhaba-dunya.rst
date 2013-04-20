@@ -64,12 +64,16 @@ Derleme ve Çalıştırma
 
 Programlarınızı derlemek, bağlamak ve kurmak için kdelibs, cmake, make ve gcc-c++ gibi bazı programların sisteminizde yüklü olması gerekiyor. Her şeye eksiksiz olarak sahip olduğunuzdan emin olmak için tekrar geliştirme araçlarının kurulumu bölümüne göz atabilirsiniz.
 
-mkdir build
-cd build
-cmake ..
-make
-make install
+.. code-block:: shell
+
+   mkdir build
+   cd build
+   cmake ..
+   make
+   make install
 
 Ve yazdığınız ilk uygulamayı çalıştırmak için de aşağıdaki komutu kullanabilirsiniz:
 
-./tutorial1
+.. code-block:: shell
+
+   ./tutorial1
