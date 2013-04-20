@@ -9,7 +9,7 @@ KDE Geliştirme Kitabı Projesi!
 İçindekiler:
 
 .. toctree::
-   :maxdepth: 0
+   :maxdepth: 1
 
    00/kimicin.rst
    05/00-merhaba-dunya.rst
