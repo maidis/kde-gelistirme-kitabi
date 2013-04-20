@@ -15,6 +15,10 @@ Kod
 
 İhtiyacımız olan tüm kodlar tek bir dosyada main.cpp'de olacak. Şimdi aşağıdaki kodları içerecek şekilde bu dosyayı oluşturun:
 
+.. literalinclude:: 00/main.cpp
+   :language: c++
+   :linenos:
+
 Bu programda karşılaşacağımız KDE'ye özgü ilk kod KAboutData. Bu, kısa bir açıklama, yazar, lisans bilgileri gibi program hakkındaki çeşitli temel bilgileri saklamak için kullanılan bir sınıftır. Hemen hemen her KDE uygulamasında bu sınıf kullanmalısınız.
 
 Daha sonra KCmdLineArgs ile karşılaşıyoruz. Bu sınıf komut satırı anahtarları belirlemek için kullanılır. Örneğin programın belirtilen bir dosya ile açılması sağlanabilir. Bununla birlikte bu örnekte gelişmiş bir şeyler yapmayacağımızdan KCmdLineArgs'ı KAboutData nesnesi ile ilklendiriyoruz. Böylece programla birlikte istersek --version ve --author parametrelerini kullanabileceğiz.
@@ -42,6 +46,10 @@ Tüm KDE uygulamalarında inşa ortamı olarak CMake'i kullanacağız. Bir CMake
 
 Şimdi main.cpp dosyasının olduğu dizin içinde içeriği aşağıdaki gibi olan bir CMakeLists.txt dosyası oluşturun:
 
+.. literalinclude:: 00/CMakeLists.txt
+   :language: cmake
+   :linenos:
+
 find_package() fonksiyonunu istediğimiz paketin konumunu bulur ve paket başlıklarının ve kütüphanelerinin yerini belirten bazı değişkenler ayarlar. Böylece KDE başlık dosyalarını içermek için KDE4_INCLUDES değişkenini kullanabileceğiz. Derleyicinin başlık dosyalarını bulabilmesi için bu değişkeni include_directories() fonksiyonuna geçeceğiz, böylece KDE4 başlıkları, başlıkl arama yollarının arasına eklenecek.
 
 Sonrasında set() fonksiyonunuyla tutorial1_SRCS isimli bir değişken oluşturuyoruz ve bu örneğimiz için sadece tek kaynak dosyamızın ismine eşitliyoruz.
@@ -62,4 +70,3 @@ make install
 Ve yazdığınız ilk uygulamayı çalıştırmak için de aşağıdaki komutu kullanabilirsiniz:
 
 ./tutorial1
-
