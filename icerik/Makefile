@@ -156,7 +156,7 @@ doctest:
 gh-pages:
 	git checkout gh-pages
 	rm -rf _build
-	git checkout master $(GH_PAGES_SOURCES)
+	git checkout master/icerik $(GH_PAGES_SOURCES)
 	git reset HEAD
 	make html
 	mv -fv _build/html/* ../
