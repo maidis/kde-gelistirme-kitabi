@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta name="dtb:uid" content="unknown"/>
+    <meta name="dtb:depth" content="2"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>kde_gelistirme</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="navPoint1" playOrder="1">
+      <navLabel>
+        <text>Welcome to kde_gelistirme&#39;s documentation!</text>
+      </navLabel>
+      <content src="index.html" />
+    </navPoint>
+    <navPoint id="navPoint2" playOrder="2">
+      <navLabel>
+        <text>Bu Kitap Kimin İçin</text>
+      </navLabel>
+      <content src="00/kimicin.html" />
+    </navPoint>
+    <navPoint id="navPoint3" playOrder="3">
+      <navLabel>
+        <text>Merhaba Dünya</text>
+      </navLabel>
+      <content src="05/00-merhaba-dunya.html" />
+      <navPoint id="navPoint3" playOrder="3">
+        <navLabel>
+          <text>Merhaba Dünya</text>
+        </navLabel>
+        <content src="05/00-merhaba-dunya.html" />
+      </navPoint>
+      <navPoint id="navPoint4" playOrder="4">
+        <navLabel>
+          <text>Giriş</text>
+        </navLabel>
+        <content src="05/00-merhaba-dunya.html#giris" />
+      </navPoint>
+      <navPoint id="navPoint5" playOrder="5">
+        <navLabel>
+          <text>Kod</text>
+        </navLabel>
+        <content src="05/00-merhaba-dunya.html#kod" />
+      </navPoint>
+      <navPoint id="navPoint6" playOrder="6">
+        <navLabel>
+          <text>İnşa</text>
+        </navLabel>
+        <content src="05/00-merhaba-dunya.html#insa" />
+      </navPoint>
+      <navPoint id="navPoint7" playOrder="7">
+        <navLabel>
+          <text>Derleme ve Çalıştırma</text>
+        </navLabel>
+        <content src="05/00-merhaba-dunya.html#derleme-ve-calistirma" />
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>
