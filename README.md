@@ -19,7 +19,7 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * D-Bus
 * Git
 
-**Benzer projeler**
+**Kaynaklar ve Benzer projeler**
 * http://sourceforge.net/projects/kde20devel/
 * http://techbase.kde.org/
 * http://flossmanuals.net/kde-guide/
@@ -30,6 +30,6 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * http://svn.pardus.org.tr/uludag/trunk/doc/tr/reStructuredText.rst
 * http://www.istihza.com/py2/restructuredtext.html
 
-**Yararlı Sphinx Belgeleri**
+**Sphinx Belgeleri**
 * http://pedrokroger.net/2012/10/using-sphinx-to-write-books/
 * http://sphinx-doc.org/latest/markup/code.html
