@@ -6,7 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build
-GH_PAGES_SOURCES = icerik conf.py Makefile
+GH_PAGES_SOURCES = icerik Makefile
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
