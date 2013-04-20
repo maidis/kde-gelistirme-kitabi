@@ -1,3 +1,0 @@
-/home/maidis/Gelistirme/c++/kde-gelistirme-kitabi/icerik/05/00/build/CMakeFiles/tutorial1.dir
-/home/maidis/Gelistirme/c++/kde-gelistirme-kitabi/icerik/05/00/build/CMakeFiles/tutorial1_automoc.dir
-/home/maidis/Gelistirme/c++/kde-gelistirme-kitabi/icerik/05/00/build/CMakeFiles/uninstall.dir

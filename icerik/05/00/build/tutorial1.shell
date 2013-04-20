@@ -1,4 +1,0 @@
-#!/bin/sh
-# created by cmake, don't edit, changes will be lost
-
-LD_LIBRARY_PATH=/home/maidis/Gelistirme/c++/kde-gelistirme-kitabi/icerik/05/00/build/lib/./:/usr/local/lib64:/usr/lib64/kde4/devel:/usr/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH} "/home/maidis/Gelistirme/c++/kde-gelistirme-kitabi/icerik/05/00/build/tutorial1" "$@"
