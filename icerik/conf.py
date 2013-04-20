@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'KDE Geliştirme'
+project = u'KDE Gelistirme'
 copyright = u'2013, Anıl Özbek'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -103,7 +103,7 @@ html_theme = 'sphinxdoc'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "KDE Geliştirme"
+html_title = "KDE Gelistirme"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -245,7 +245,7 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'KDE Geliştirme'
+epub_title = u'KDE Gelistirme'
 epub_author = u'Anıl Özbek'
 epub_publisher = u'Anıl Özbek'
 epub_copyright = u'2013, Anıl Özbek'
