@@ -1,0 +1,8 @@
+project (tutorial1)
+find_package(KDE4 REQUIRED)
+include (KDE4Defaults)
+include_directories(${KDE4_INCLUDES})
+set(tutorial1_SRCS main.cpp)
+kde4_add_executable(tutorial1 ${tutorial1_SRCS})
+target_link_libraries(tutorial1 ${KDE4_KDEUI_LIBS})
+install(TARGETS tutorial1  ${INSTALL_TARGETS_DEFAULT_ARGS})
