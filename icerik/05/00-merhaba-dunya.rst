@@ -6,6 +6,8 @@ Giriş
 
 Yazacağınız ilk KDE programı tahmin edebileceğiniz gibi size sıcak bir merhaba  diyecek olan Merhaba Dünya örneği. Bunun için bir KMessageBox kullanacağız ve onun düğmelerinden birini özelleştireceğiz.
 
+.. image:: 00_res/merhaba01.png
+
 İpucu: Kitap boyunca karşılaştığınız sınıflar hakkında daha çok bilgi almak için KDE'nin yerleşik arama motorunu kullanabilirsiniz. Örneğin KMessageBox hakkında merak ettiğiniz bir şeyler olursa Dolphin, Rekonq veya KRunner'da sadece kde:kmessagebox yazarak doğrudan ilgili belgelendirmeye ulaşabilirsiniz.
 
 İpucu: Verilen örnek ve ilerideki daha büyük projeler için QtCreator veya KDevelop gibi gelişmiş bütünleşik geliştirme ortamlarını tercih edebileceğiniz gibi Kate gibi bir metin düzenleyiciyi de kullanabilirsiniz.
