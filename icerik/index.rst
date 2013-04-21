@@ -14,6 +14,7 @@ KDE Geliştirme Kitabı Projesi!
    00/telif.rst
    00/kimicin.rst
    05/00-merhaba-dunya.rst
+   05/01-KXmlGuiWindow-kullanimi.rst
 
 
 
