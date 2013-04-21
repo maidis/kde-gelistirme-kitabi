@@ -11,6 +11,7 @@ KDE Geliştirme Kitabı Projesi!
 .. toctree::
    :maxdepth: 1
 
+   00/telif.rst
    00/kimicin.rst
    05/00-merhaba-dunya.rst
 
