@@ -170,6 +170,9 @@ htmlhelp_basename = 'kde_gelistirmedoc'
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
+#For fixing code blocks
+'inputenc': r'\usepackage[utf8]{inputenc}',
+'babel': r''
 # The paper size ('letterpaper' or 'a4paper').
 #'papersize': 'letterpaper',
 
