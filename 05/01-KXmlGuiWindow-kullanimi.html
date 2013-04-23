@@ -202,20 +202,31 @@
 <div class="section" id="insa">
 <h2>İnşa<a class="headerlink" href="#insa" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
 <p>Uygulamaları inşa etmek için en iyi yollardan biri CMake kullanmaktır. Bu kezki <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> dosyasını hazırlarken nasıl birden fazla dosyanın kullanılacağını göreceğiz:</p>
-<div class="highlight-cmake"><pre>project (tutorial2)
+<div class="highlight-cmake"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">project</span> <span class="p">(</span><span class="s">tutorial2</span><span class="p">)</span>
 
-find_package(KDE4 REQUIRED)
-include_directories(${KDE4_INCLUDES})
+<span class="nb">find_package</span><span class="p">(</span><span class="s">KDE4</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">KDE4_INCLUDES</span><span class="o">}</span><span class="p">)</span>
 
-set(tutorial2_SRCS 
-  main.cpp
-  mainwindow.cpp
-)
+<span class="nb">set</span><span class="p">(</span><span class="s">tutorial2_SRCS</span> 
+  <span class="s">main.cpp</span>
+  <span class="s">mainwindow.cpp</span>
+<span class="p">)</span>
 
-kde4_add_executable(tutorial2 ${tutorial2_SRCS})
-target_link_libraries(tutorial2 ${KDE4_KDEUI_LIBS})
-</pre>
-</div>
+<span class="nb">kde4_add_executable</span><span class="p">(</span><span class="s">tutorial2</span> <span class="o">${</span><span class="nv">tutorial2_SRCS</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">tutorial2</span> <span class="o">${</span><span class="nv">KDE4_KDEUI_LIBS</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
 </div>
 <div class="section" id="derleme-ve-calistirma">
 <h2>Derleme ve Çalıştırma<a class="headerlink" href="#derleme-ve-calistirma" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>

@@ -213,16 +213,23 @@
 <h2>İnşa<a class="headerlink" href="#insa" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
 <p>Tüm KDE uygulamalarında inşa ortamı olarak CMake&#8217;i kullanacağız. Bir CMakeLists.txt dosyası oluşturacağız ve CMake bu dosyayı kullanarak tüm gerekli inşa dosyalarını otomatik olarak kendisi oluşturacak.</p>
 <p>Şimdi main.cpp dosyasının olduğu dizin içinde içeriği aşağıdaki gibi olan bir CMakeLists.txt dosyası oluşturun:</p>
-<div class="highlight-cmake"><pre>project (tutorial1)
-find_package(KDE4 REQUIRED)
-include (KDE4Defaults)
-include_directories(${KDE4_INCLUDES})
-set(tutorial1_SRCS main.cpp)
-kde4_add_executable(tutorial1 ${tutorial1_SRCS})
-target_link_libraries(tutorial1 ${KDE4_KDEUI_LIBS})
-install(TARGETS tutorial1  ${INSTALL_TARGETS_DEFAULT_ARGS})
-</pre>
-</div>
+<div class="highlight-cmake"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">project</span> <span class="p">(</span><span class="s">tutorial1</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">KDE4</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">include</span> <span class="p">(</span><span class="s">KDE4Defaults</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">KDE4_INCLUDES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">tutorial1_SRCS</span> <span class="s">main.cpp</span><span class="p">)</span>
+<span class="nb">kde4_add_executable</span><span class="p">(</span><span class="s">tutorial1</span> <span class="o">${</span><span class="nv">tutorial1_SRCS</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">tutorial1</span> <span class="o">${</span><span class="nv">KDE4_KDEUI_LIBS</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span> <span class="s">tutorial1</span>  <span class="o">${</span><span class="nv">INSTALL_TARGETS_DEFAULT_ARGS</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
 <p>find_package() fonksiyonunu istediğimiz paketin konumunu bulur ve paket başlıklarının ve kütüphanelerinin yerini belirten bazı değişkenler ayarlar. Böylece KDE başlık dosyalarını içermek için KDE4_INCLUDES değişkenini kullanabileceğiz. Derleyicinin başlık dosyalarını bulabilmesi için bu değişkeni include_directories() fonksiyonuna geçeceğiz, böylece KDE4 başlıkları, başlıkl arama yollarının arasına eklenecek.</p>
 <p>Sonrasında set() fonksiyonunuyla tutorial1_SRCS isimli bir değişken oluşturuyoruz ve bu örneğimiz için sadece tek kaynak dosyamızın ismine eşitliyoruz.</p>
 <p>Daha sonra kde4_add_executable() fonksiyonunu kullanarak tutorial1_SRCS değişkeninde listelenmiş kaynak kodlarından tutorial1 isminde bir çalıştırılabilir dosya oluşturuyoruz. Ardından target_link_libraries() fonksiyonunu  ve find_package() tarafından tanımlanan KDE4_KDEUI_LIBS değişkenini kullanarak çalıştırılabilir dosyamızı KDE4 kdeui kütüphanesine bağlıyoruz. install ile başlayan satır da Makefile içine öntanımlı bir &#8220;install&#8221; hedefi yazıyor.</p>
