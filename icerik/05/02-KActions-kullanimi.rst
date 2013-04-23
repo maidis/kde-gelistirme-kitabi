@@ -1,3 +1,6 @@
+KActions Kullanımı
+-------------------
+
 Bu örnekte eylem konseptine giriş yapacağız. Eylemler kullanıcıların uygulamayla etkileşim kurmasını temin eden bütünleşik bir yoldur. Bir önceki uygulamamızda kullanıcıların araç çubuğundan bir düğmeyi tıklayarak, dosya menüsünden bir seçeneği seçerek veya bir klayve kısayolunu kullanarak metin kutusunu temizleyebilmesini sağlamak için tek bir ``KAction`` yeterli olacaktır. KAction, belli bir eylemle ilişkili simge ve kısayollar hakkında tüm bilgileri içeren bir nesnedir. Eylem daha sonra çalışmanın yapılacağı bir yuvaya bağlanır.
 
 .. image:: 02_res/temizlemedugmesi01.png
