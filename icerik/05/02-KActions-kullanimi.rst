@@ -30,7 +30,7 @@ KAction'ın kurulumu birkaç adımdan oluşmakta. İlk önce KAction kütüphane
 
 Artık bir KAction nesnemiz var, ayarlarını gerçekleştirmeye başlayabiliriz. ``clearAction->setText(i18n("&Clear"));`` ile menüdeki girdinin ve araç çubuğundaki simgenin metnini ayarlıyoruz.
 
-Burada metni i18n() fonksiyonundan geçirdiğimi fark etmişsinizdir, bu arayüzün diğer dillere de çevrilebilmesi için zorunludur. Eylem metninde bir adet & işareti de bulunmalıdır. Bu latin1 dışındaki dillere çeviri işlemini kolaylaştırır. Örneğin Japonca'da çeviri ソース(&S) olabilir ve kaynak metinde & işareti olmaksızın çevirmenler & işaretini eklemelerinin gerekip gerekmediğini bilemezler.
+Burada metni i18n() fonksiyonundan geçirdiğimi fark etmişsinizdir, bu arayüzün diğer dillere de çevrilebilmesi için zorunludur. Eylem metninde bir adet & işareti de bulunmalıdır. Bu latin1 dışındaki dillere çeviri işlemini kolaylaştırır, kaynak metinde & işareti olmaksızın çevirmenler & işaretini eklemelerinin gerekip gerekmediğini bilemezler.
 
 Eylem bir araç çubuğunda görüntülencekse eylemi temsili eden bir simge kullanılması iyi olacaktır. ``clearAction->setIcon(KIcon("document-new"));`` ile ``setIcon()`` fonksiyonu yardımıyla clearAction eylemine ``document-new`` simgesini atıyoruz.
 
