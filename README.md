@@ -32,4 +32,6 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 
 **Sphinx Belgeleri**
 * http://pedrokroger.net/2012/10/using-sphinx-to-write-books/
-* http://sphinx-doc.org/latest/markup/code.html
+* http://sphinx-doc.org/latest/contents.html
+* http://www.istihza.com/py2/sphinxdoc.html
+
