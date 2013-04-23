@@ -186,7 +186,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'kde_gelistirme.tex', u'kde\\_gelistirme Documentation',
+  ('index', 'kde_gelistirme.tex', u'KDE Geliştirme',
    u'Anıl Özbek', 'manual'),
 ]
 
@@ -248,7 +248,7 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'KDE Gelistirme'
+epub_title = u'KDE Geliştirme'
 epub_author = u'Anıl Özbek'
 epub_publisher = u'Anıl Özbek'
 epub_copyright = u'2013, Anıl Özbek'
@@ -282,7 +282,7 @@ epub_language = 'tr'
 #epub_exclude_files = []
 
 # The depth of the table of contents in toc.ncx.
-epub_tocdepth = 2
+epub_tocdepth = 1
 
 # Allow duplicate toc entries.
 #epub_tocdup = True
