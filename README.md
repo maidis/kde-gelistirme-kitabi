@@ -19,7 +19,7 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * D-Bus
 * Git
 
-**Kaynaklar ve Benzer projeler**
+**KDE Kaynakları ve Benzer projeler**
 * http://sourceforge.net/projects/kde20devel/
 * http://techbase.kde.org/
 * http://flossmanuals.net/kde-guide/
@@ -35,3 +35,10 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * http://sphinx-doc.org/latest/contents.html
 * http://www.istihza.com/py2/sphinxdoc.html
 
+**Git**
+* http://www.progit.org/book/tr
+* https://github.com/progit/progit/tree/master/tr
+
+**Qt**
+* http://ufukuzun.wordpress.com/qt-4-ile-c-gui-programlama/
+* http://qt-project.org/doc/
