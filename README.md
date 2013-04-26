@@ -42,3 +42,9 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 **Qt**
 * http://ufukuzun.wordpress.com/qt-4-ile-c-gui-programlama/
 * http://qt-project.org/doc/
+
+**CMake**
+* http://www.cmake.org/Wiki/CMake
+* http://www.cmake.org/cmake/help/documentation.html
+* http://www.amazon.com/Mastering-CMake-Ken-Martin/dp/193093422X
+* http://www.amazon.com/Software-Build-Systems-Principles-Experience/dp/0321717287
