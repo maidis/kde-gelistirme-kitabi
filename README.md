@@ -12,6 +12,7 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 * Yeni Bir KDE Oyunu Geliştirmek
 * Plasma ve Programcıklar
 * KDE Yerelleştirme Çalışmaları
+* KDE Belgelendirme Çalışmaları
 * KDE Yazılımlarını Paketlemek
 * Qt
 * QML
@@ -38,6 +39,7 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 **Git**
 * http://www.progit.org/book/tr
 * https://github.com/progit/progit/tree/master/tr
+* http://rogerdudler.github.io/git-guide/index.tr.html
 
 **Qt**
 * http://ufukuzun.wordpress.com/qt-4-ile-c-gui-programlama/
