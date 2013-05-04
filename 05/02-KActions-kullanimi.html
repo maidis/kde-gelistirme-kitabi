@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>KActions Kullanımı &mdash; KDE Gelistirme</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="KDE Gelistirme" href="../index.html" />
+    <link rel="next" title="Dosya Açma ve Kaydetme" href="03-dosya-acma-kaydetme.html" />
+    <link rel="prev" title="Bir Pencere Oluşturmak" href="01-KXmlGuiWindow-kullanimi.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Dizin"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="03-dosya-acma-kaydetme.html" title="Dosya Açma ve Kaydetme"
+             accesskey="N">sonraki</a> |</li>
+        <li class="right" >
+          <a href="01-KXmlGuiWindow-kullanimi.html" title="Bir Pencere Oluşturmak"
+             accesskey="P">önceki</a> |</li>
+        <li><a href="../index.html">KDE Gelistirme</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">İçindekiler Tablosu</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">KActions Kullanımı</a><ul>
+<li><a class="reference internal" href="#giris">Giriş</a></li>
+<li><a class="reference internal" href="#kod">Kod</a></li>
+<li><a class="reference internal" href="#insa">İnşa</a></li>
+<li><a class="reference internal" href="#derleme-ve-calistirma">Derleme ve Çalıştırma</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Önceki konu</h4>
+  <p class="topless"><a href="01-KXmlGuiWindow-kullanimi.html"
+                        title="önceki bölüm">Bir Pencere Oluşturmak</a></p>
+  <h4>Sonraki konu</h4>
+  <p class="topless"><a href="03-dosya-acma-kaydetme.html"
+                        title="sonraki bölüm">Dosya Açma ve Kaydetme</a></p>
+  <h3>Bu Sayfa</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/05/02-KActions-kullanimi.txt"
+           rel="nofollow">Kaynağı Göster</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Hızlı Arama</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Git" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Aranacak terimleri veya modül, sınıf ya da fonksiyon adını yazınız
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="kactions-kullanimi">
+<h1>KActions Kullanımı<a class="headerlink" href="#kactions-kullanimi" title="Bu başlığın kalıcı bağlantısı">¶</a></h1>
+<div class="section" id="giris">
+<h2>Giriş<a class="headerlink" href="#giris" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
+<p>Bu örnekte eylem konseptine giriş yapacağız. Eylemler kullanıcıların uygulamayla etkileşim kurmasını temin eden bütünleşik bir yoldur. Bir önceki uygulamamızda kullanıcıların araç çubuğundan bir düğmeyi tıklayarak, dosya menüsünden bir seçeneği seçerek veya bir klayve kısayolunu kullanarak metin kutusunu temizleyebilmesini sağlamak için tek bir <tt class="docutils literal"><span class="pre">KAction</span></tt> yeterli olacaktır. KAction, belli bir eylemle ilişkili simge ve kısayollar hakkında tüm bilgileri içeren bir nesnedir. Eylem daha sonra çalışmanın yapılacağı bir yuvaya bağlanır.</p>
+<img alt="../_images/temizlemedugmesi01.png" class="align-center" src="../_images/temizlemedugmesi01.png" />
+</div>
+<div class="section" id="kod">
+<h2>Kod<a class="headerlink" href="#kod" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
+<p>Öncekilere çok benzeyen bir <tt class="docutils literal"><span class="pre">main.cpp</span></tt> ile kodlamaya başlıyoruz:</p>
+<div class="highlight-c++"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#include &lt;KApplication&gt;</span>
+<span class="cp">#include &lt;KAboutData&gt;</span>
+<span class="cp">#include &lt;KCmdLineArgs&gt;</span>
+
+<span class="cp">#include &quot;mainwindow.h&quot;</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="n">KAboutData</span> <span class="n">aboutData</span><span class="p">(</span> <span class="s">&quot;tutorial3&quot;</span><span class="p">,</span> <span class="s">&quot;tutorial3&quot;</span><span class="p">,</span>
+      <span class="n">ki18n</span><span class="p">(</span><span class="s">&quot;Tutorial 3&quot;</span><span class="p">),</span> <span class="s">&quot;1.0&quot;</span><span class="p">,</span>
+      <span class="n">ki18n</span><span class="p">(</span><span class="s">&quot;A simple text area using KAction etc.&quot;</span><span class="p">),</span>
+      <span class="n">KAboutData</span><span class="o">::</span><span class="n">License_GPL</span><span class="p">,</span>
+      <span class="n">ki18n</span><span class="p">(</span><span class="s">&quot;Copyright (c) 2013 Developer&quot;</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">KCmdLineArgs</span><span class="o">::</span><span class="n">init</span><span class="p">(</span> <span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">aboutData</span> <span class="p">);</span>
+  <span class="n">KApplication</span> <span class="n">app</span><span class="p">;</span>
+
+  <span class="n">MainWindow</span><span class="o">*</span> <span class="n">window</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MainWindow</span><span class="p">();</span>
+  <span class="n">window</span><span class="o">-&gt;</span><span class="n">show</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">app</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p><tt class="docutils literal"><span class="pre">mainwindow.h</span></tt> dosyasında da öncekilerden farklı olarak sadece KAction&#8217;ın ayarlamasını yapacak olan <tt class="docutils literal"><span class="pre">void</span> <span class="pre">setupActions()</span></tt> fonksiyonu bulunmaktadır:</p>
+<div class="highlight-c++"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#ifndef MAINWINDOW_H</span>
+<span class="cp">#define MAINWINDOW_H</span>
+
+<span class="cp">#include &lt;KXmlGuiWindow&gt;</span>
+<span class="cp">#include &lt;KTextEdit&gt;</span>
+
+<span class="k">class</span> <span class="nc">MainWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="n">KXmlGuiWindow</span>
+<span class="p">{</span>
+  <span class="nl">public:</span>
+    <span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="nl">private:</span>
+    <span class="n">KTextEdit</span><span class="o">*</span> <span class="n">textArea</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">setupActions</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</td></tr></table></div>
+<p>Şimdi <tt class="docutils literal"><span class="pre">mainwindow.cpp</span></tt> dosyasının içeriğine bakıp, kullanılan yeni ifadeleri inceleyelim:</p>
+<div class="highlight-c++"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#include &quot;mainwindow.h&quot;</span>
+
+<span class="cp">#include &lt;KApplication&gt;</span>
+<span class="cp">#include &lt;KAction&gt;</span>
+<span class="cp">#include &lt;KLocale&gt;</span>
+<span class="cp">#include &lt;KActionCollection&gt;</span>
+<span class="cp">#include &lt;KStandardAction&gt;</span>
+
+<span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">KXmlGuiWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">textArea</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KTextEdit</span><span class="p">;</span>
+  <span class="n">setCentralWidget</span><span class="p">(</span><span class="n">textArea</span><span class="p">);</span>
+
+  <span class="n">setupActions</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">setupActions</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">KAction</span><span class="o">*</span> <span class="n">clearAction</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KAction</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="n">clearAction</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">i18n</span><span class="p">(</span><span class="s">&quot;&amp;Clear&quot;</span><span class="p">));</span>
+  <span class="n">clearAction</span><span class="o">-&gt;</span><span class="n">setIcon</span><span class="p">(</span><span class="n">KIcon</span><span class="p">(</span><span class="s">&quot;document-new&quot;</span><span class="p">));</span>
+  <span class="n">clearAction</span><span class="o">-&gt;</span><span class="n">setShortcut</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">CTRL</span> <span class="o">+</span> <span class="n">Qt</span><span class="o">::</span><span class="n">Key_W</span><span class="p">);</span>
+  <span class="n">actionCollection</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addAction</span><span class="p">(</span><span class="s">&quot;clear&quot;</span><span class="p">,</span> <span class="n">clearAction</span><span class="p">);</span>
+  <span class="n">connect</span><span class="p">(</span><span class="n">clearAction</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">triggered</span><span class="p">(</span><span class="kt">bool</span><span class="p">)),</span>
+          <span class="n">textArea</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">clear</span><span class="p">()));</span>
+
+  <span class="n">KStandardAction</span><span class="o">::</span><span class="n">quit</span><span class="p">(</span><span class="n">kapp</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">quit</span><span class="p">()),</span>
+                        <span class="n">actionCollection</span><span class="p">());</span>
+
+  <span class="n">setupGUI</span><span class="p">(</span><span class="n">Default</span><span class="p">,</span> <span class="s">&quot;tutorial3ui.rc&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Örneğimizde bu sefer <tt class="docutils literal"><span class="pre">MainWindow</span></tt> için olan kurucu <tt class="docutils literal"><span class="pre">setupGUI()</span></tt> yerine <tt class="docutils literal"><span class="pre">setupActions()</span></tt> fonksiyonunu çağırmakta. setupActions() fonksiyonunda KAction ile ilgi kodlar bulunmaktadır, en sonunda da setupGUI() çağrısı vardır.</p>
+<p>KAction&#8217;ın kurulumu birkaç adımdan oluşmakta. İlk önce KAction kütüphanesi <tt class="docutils literal"><span class="pre">#include</span> <span class="pre">&lt;KAction&gt;</span></tt> ile kaynak kodda içeriye aktarılıyor. Daha sonra da <tt class="docutils literal"><span class="pre">KAction*</span> <span class="pre">clearAction</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">KAction(this);</span></tt> ile  <tt class="docutils literal"><span class="pre">clearAction</span></tt> isminde yeni bir KAction nesnesi oluşturuluyor.</p>
+<p>Artık bir KAction nesnemiz var, ayarlarını gerçekleştirmeye başlayabiliriz. <tt class="docutils literal"><span class="pre">clearAction-&gt;setText(i18n(&quot;&amp;Clear&quot;));</span></tt> ile menüdeki girdinin ve araç çubuğundaki simgenin metnini ayarlıyoruz.</p>
+<p>Burada metni i18n() fonksiyonundan geçirdiğimi fark etmişsinizdir, bu arayüzün diğer dillere de çevrilebilmesi için zorunludur. Eylem metninde bir adet &amp; işareti de bulunmalıdır. Bu latin1 dışındaki dillere çeviri işlemini kolaylaştırır, kaynak metinde &amp; işareti olmaksızın çevirmenler &amp; işaretini eklemelerinin gerekip gerekmediğini bilemezler.</p>
+<p>Eylem bir araç çubuğunda görüntülencekse eylemi temsili eden bir simge kullanılması iyi olacaktır. <tt class="docutils literal"><span class="pre">clearAction-&gt;setIcon(KIcon(&quot;document-new&quot;));</span></tt> ile <tt class="docutils literal"><span class="pre">setIcon()</span></tt> fonksiyonu yardımıyla clearAction eylemine <tt class="docutils literal"><span class="pre">document-new</span></tt> simgesini atıyoruz.</p>
+<p>Eylemimize bir klayve kısayolu atamak da son derece kolaydır. <tt class="docutils literal"><span class="pre">clearAction-&gt;setShortcut(Qt::CTRL</span> <span class="pre">+</span> <span class="pre">Qt::Key_W);</span></tt> ile eylemimize <tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">W</span></tt> kısayolunu atıyoruz.</p>
+<p>XMLGUI&#8217;nin bir eyleme erişebilmesi için eylemin, uygulamanın eylem koleksiyonunda bulunması gerekir. Eylem koleksiyonuna <tt class="docutils literal"><span class="pre">actionCollection()</span></tt> fonksiyonuyla erişilebilir ve <tt class="docutils literal"><span class="pre">actionCollection()-&gt;addAction(&quot;clear&quot;,</span> <span class="pre">clearAction);</span></tt> biçiminde kullanılabilir. Burada clearAction eylemi koleksiyona eklenmiş ve <tt class="docutils literal"><span class="pre">clear</span></tt> ismi verilmiştir. clear ismi sadece XMLGUI tarafından iç işlerde kullanıldığı için yerelleştirilmemelidir.</p>
+<p>Bütün ayarlamaları yapılmış eylemimiz hazır durumda. Şimdi işe yarar bir şeylere bağlantısını yapmamız gerekiyor. Örneğimizde metin alanına girilen yazıların temizlenmesini istediğimizden eylemimizi <tt class="docutils literal"><span class="pre">KTextEdit</span></tt>&#8216;in <tt class="docutils literal"><span class="pre">clear()</span></tt> fonksiyonuna bağlıyoruz. clear() da şaşırtıcılıktan uzak bir şekilde KTextEdit&#8217;in temizliğinden sorumlu fonksiyon elbette.</p>
+<p>Hemen hemen bütün KDE uygulamalarında bulunan <tt class="docutils literal"><span class="pre">quite</span></tt>, <tt class="docutils literal"><span class="pre">save</span></tt>, <tt class="docutils literal"><span class="pre">load</span></tt> gibi işlemler için KStandardAction üzerinden kullanılabilecek önceden oluşturulmuş eylemler vardır. Örneğin <tt class="docutils literal"><span class="pre">KStandardAction::quit(kapp,</span> <span class="pre">SLOT(quit()),</span> <span class="pre">actionCollection());</span></tt> ile çıkış için kullanılacak eylemi, doğru simge, metin ve kısayolla kolayca oluşturuyoruz.</p>
+<p>Şu anda temizleme yapacak eylemimiz oluşturuldu ancak herhangi bir menü veya araç çubuğuyla ilişkilendirilmedi. Bu ilişkilendirmeyi yapmak için birbirinden güzel hareketli araç çubukları oluşturan XMLGUI&#8217;yi kullanacağız.</p>
+<p>KXmlGuiWindow&#8217;daki setupGUI() fonksiyonu grafik kullanıcı arayüzünü oluşturmak için XML dosya açıklamalarını ayrıştıran XMLGUI sistemine bağlıdır.</p>
+<p>XML dosyalarını isimlendirirken uygulamaismiui.rc kalıbı kullanılmalıdır. Bu örneğimizde uygulama ismimiz <tt class="docutils literal"><span class="pre">tutorial3</span></tt> olduğu için XML dosyamızın ismi de <tt class="docutils literal"><span class="pre">tutorial3ui.rc</span></tt> olarak yazılmıştır:</p>
+<div class="highlight-xml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;gui</span> <span class="na">name=</span><span class="s">&quot;tutorial3&quot;</span>
+     <span class="na">version=</span><span class="s">&quot;1&quot;</span>
+     <span class="na">xmlns=</span><span class="s">&quot;http://www.kde.org/standards/kxmlgui/1.0&quot;</span>
+     <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+     <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.kde.org/standards/kxmlgui/1.0</span>
+<span class="s">                         http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd&quot;</span> <span class="nt">&gt;</span>
+
+  <span class="nt">&lt;MenuBar&gt;</span>
+    <span class="nt">&lt;Menu</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span> <span class="nt">&gt;</span>
+      <span class="nt">&lt;Action</span> <span class="na">name=</span><span class="s">&quot;clear&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/Menu&gt;</span>
+  <span class="nt">&lt;/MenuBar&gt;</span>
+
+  <span class="nt">&lt;ToolBar</span> <span class="na">name=</span><span class="s">&quot;mainToolBar&quot;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;text&gt;</span>Main Toolbar<span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;Action</span> <span class="na">name=</span><span class="s">&quot;clear&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/ToolBar&gt;</span>
+
+<span class="nt">&lt;/gui&gt;</span>
+</pre></div>
+</td></tr></table></div>
+<p>&lt;Toolbar&gt; etiketi genellikle pencerenin en üstünde yer alan ve üzerinde çeşitli eylemlere atalı simmeler bulunan araç çubuğunu tanımlamanıza izin verir. Burada <tt class="docutils literal"><span class="pre">&lt;text&gt;</span></tt> etiketiyle eşsiz ismi <tt class="docutils literal"><span class="pre">mainToolBar</span></tt> ve kullanıcıya görünen ismi <tt class="docutils literal"><span class="pre">Main</span> <span class="pre">Toolbar``olan</span> <span class="pre">bir</span> <span class="pre">araç</span> <span class="pre">çubuğu</span> <span class="pre">tanımlanıyor.</span> <span class="pre">``&lt;Action&gt;</span></tt> etiketiyle de temizleme eylemi araç çubuğuna yerleştiriliyor.</p>
+<p>Araç çubuğuna bir eylem eklemek yerine <tt class="docutils literal"><span class="pre">&lt;MenuBar&gt;</span></tt> etiketiyle menü çubuğuna bir girdi de eklenebilir.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Uyarı</p>
+<p class="last">Son kurulumdan sonra .rc dosyası üzerinde değişiklik yaparsanız sistem bazında önbellek güncellemesi için <tt class="docutils literal"><span class="pre">&lt;gui&gt;</span></tt> etiketinin <tt class="docutils literal"><span class="pre">version</span></tt> özniteliğini de değiştirmeyi unutmayın. Verdiğiniz sürüm numarasın da bir tamsayı olduğundan emin olun, ondalık değer kullanırsanız çalışmayacak ve çalımadığına dair de bir uyarıda bulunmayacaktır.</p>
+</div>
+<p>Kod ve .rc dosyaları arasındaki ilişkiye biraz daha değinmek gerekirse şunlar söylenebilir: menüler otomatik olarak görünür ve standart menüler hariç hepsi &lt;text/&gt; alt etiketine sahip olmalıdır. Eylemler elle oluşturulmalı ve .rc dosyasında isimleriyle actionCollection()&#8217;un içine eklenmelidir. Eylemler gizlenebilir veya devre dışı bırakılabilir ama menülerde böyle bir durum yoktur.</p>
+</div>
+<div class="section" id="insa">
+<h2>İnşa<a class="headerlink" href="#insa" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
+<p>Sonunda bitirdiğimiz tutorial3ui.rc dosyasını KDE&#8217;nin bulabileceği bir yere göndermemiz gerekiyor. Bu da uygulamanın bir yere kurulması gerektiği anlamına geliyor.</p>
+<div class="highlight-cmake"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">project</span><span class="p">(</span><span class="s">tutorial3</span><span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">KDE4</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">KDE4_INCLUDES</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">tutorial3_SRCS</span>
+  <span class="s">main.cpp</span>
+  <span class="s">mainwindow.cpp</span>
+<span class="p">)</span>
+
+<span class="nb">kde4_add_executable</span><span class="p">(</span><span class="s">tutorial3</span> <span class="o">${</span><span class="nv">tutorial3_SRCS</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">tutorial3</span> <span class="o">${</span><span class="nv">KDE4_KDEUI_LIBS</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span> <span class="s">tutorial3</span> <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">BIN_INSTALL_DIR</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">FILES</span> <span class="s">tutorial3ui.rc</span>
+        <span class="s">DESTINATION</span>  <span class="o">${</span><span class="nv">DATA_INSTALL_DIR</span><span class="o">}</span><span class="s">/tutorial3</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Oluşturduğumuz <tt class="docutils literal"><span class="pre">CMakeLists.txt</span></tt> dosyası öncekilerden farklı olarak dosyaların nereye kurulacağını tarif eden iki ek satıra daha sahip. İlk olarak <tt class="docutils literal"><span class="pre">tutorial3</span></tt> hedefini <tt class="docutils literal"><span class="pre">BIN_INSTALL_DIR</span></tt> konumuna, daha sonra da kullanıcı arayüzü yerleşimini içeren <tt class="docutils literal"><span class="pre">tutorial3ui.rc</span></tt> dosyasını uygulamanın veri dizinine kopyalıyoruz.</p>
+</div>
+<div class="section" id="derleme-ve-calistirma">
+<h2>Derleme ve Çalıştırma<a class="headerlink" href="#derleme-ve-calistirma" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
+<p>Eğer KDE4&#8217;ün kurulu olduğu sistem bölümüne yazma hakkınız yoksa veya geçici bir örneği buraya yüklemek istemiyorsanız kurulumu ev dizininizde bir yere de yapabilirsiniz.</p>
+<p>CMake&#8217;in uygulamayı nereye kuracağını söylemek için <tt class="docutils literal"><span class="pre">DCMAKE_INSTALL_PREFIX</span></tt> parametresi kullanılabilir. Örneğin aşağıdaki komutlarla ev dizinizde KDE&#8217;ninkine benzer bir dizin yapısı oluşturabilir ve kurulumu buraya yapabilirsiniz:</p>
+<div class="highlight-bash"><div class="highlight"><pre>mkdir build
+<span class="nb">cd </span>build
+cmake .. -DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$HOME</span>
+make
+make install
+<span class="nv">$HOME</span>/bin/tutorial3
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Dizin"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="03-dosya-acma-kaydetme.html" title="Dosya Açma ve Kaydetme"
+             >sonraki</a> |</li>
+        <li class="right" >
+          <a href="01-KXmlGuiWindow-kullanimi.html" title="Bir Pencere Oluşturmak"
+             >önceki</a> |</li>
+        <li><a href="../index.html">KDE Gelistirme</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Anıl Özbek.
+      <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3 ile oluşturulmuştur.
+    </div>
+  </body>
+</html>

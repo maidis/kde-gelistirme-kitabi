@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Dosya Açma ve Kaydetme &mdash; KDE Gelistirme</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="KDE Gelistirme" href="../index.html" />
+    <link rel="prev" title="KActions Kullanımı" href="02-KActions-kullanimi.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Dizin"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="02-KActions-kullanimi.html" title="KActions Kullanımı"
+             accesskey="P">önceki</a> |</li>
+        <li><a href="../index.html">KDE Gelistirme</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">İçindekiler Tablosu</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Dosya Açma ve Kaydetme</a><ul>
+<li><a class="reference internal" href="#giris">Giriş</a></li>
+<li><a class="reference internal" href="#kod">Kod</a></li>
+<li><a class="reference internal" href="#insa">İnşa</a></li>
+<li><a class="reference internal" href="#derleme-ve-calistirma">Derleme ve Çalıştırma</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Önceki konu</h4>
+  <p class="topless"><a href="02-KActions-kullanimi.html"
+                        title="önceki bölüm">KActions Kullanımı</a></p>
+  <h3>Bu Sayfa</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/05/03-dosya-acma-kaydetme.txt"
+           rel="nofollow">Kaynağı Göster</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Hızlı Arama</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Git" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Aranacak terimleri veya modül, sınıf ya da fonksiyon adını yazınız
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dosya-acma-ve-kaydetme">
+<h1>Dosya Açma ve Kaydetme<a class="headerlink" href="#dosya-acma-ve-kaydetme" title="Bu başlığın kalıcı bağlantısı">¶</a></h1>
+<div class="section" id="giris">
+<h2>Giriş<a class="headerlink" href="#giris" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
+<p>Önceki örneklerimizde yavaş yavaş basit bir düzenleyici arayüzü oluşturduk. Görünüşten sonra işlevsel olarak da bir metin düzenleyiciye yaklaşmak için birkaç ekleme daha yapalım şimdi de. Bir metin düzenleyici temel olarak sabit diskteki dosyaları açabilmeli, düzenlediğiniz dosyaları kaydedebilmeli ve sıfırdan yeni dosyalar oluşturabilmeli.</p>
+<p>KDE, dosyalar üzerinde çalışmak için geliştiricilerin hayatını kolaylaştıran pek çok sınıf sunar. <tt class="docutils literal"><span class="pre">KIO</span></tt> kütüphanesi ağ şeffaf protokoller ve standart dosya iletişim pencereleri aracılığıyla dosyalara kolayca erişmenizi sağlar.</p>
+<img alt="../_images/acmakaydetme01.png" class="align-center" src="../_images/acmakaydetme01.png" />
+</div>
+<div class="section" id="kod">
+<h2>Kod<a class="headerlink" href="#kod" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
+<p>Kodlamaya önceki örneğimizdekiyle hemen hemen aynı bir <tt class="docutils literal"><span class="pre">main.cpp</span></tt> dosyasıyla başlıyoruz:</p>
+<div class="highlight-c++"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#include &lt;KApplication&gt;</span>
+<span class="cp">#include &lt;KAboutData&gt;</span>
+<span class="cp">#include &lt;KCmdLineArgs&gt;</span>
+
+<span class="cp">#include &quot;mainwindow.h&quot;</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="n">KAboutData</span> <span class="n">aboutData</span><span class="p">(</span> <span class="s">&quot;tutorial4&quot;</span><span class="p">,</span> <span class="s">&quot;tutorial4&quot;</span><span class="p">,</span>
+      <span class="n">ki18n</span><span class="p">(</span><span class="s">&quot;Tutorial 4&quot;</span><span class="p">),</span> <span class="s">&quot;1.0&quot;</span><span class="p">,</span>
+      <span class="n">ki18n</span><span class="p">(</span><span class="s">&quot;A simple text area which can load and save.&quot;</span><span class="p">),</span>
+      <span class="n">KAboutData</span><span class="o">::</span><span class="n">License_GPL</span><span class="p">,</span>
+      <span class="n">ki18n</span><span class="p">(</span><span class="s">&quot;Copyright (c) 2013 Developer&quot;</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">KCmdLineArgs</span><span class="o">::</span><span class="n">init</span><span class="p">(</span> <span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">aboutData</span> <span class="p">);</span>
+  <span class="n">KApplication</span> <span class="n">app</span><span class="p">;</span>
+
+  <span class="n">MainWindow</span><span class="o">*</span> <span class="n">window</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MainWindow</span><span class="p">();</span>
+  <span class="n">window</span><span class="o">-&gt;</span><span class="n">show</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">app</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Metin düzenleyimizin dosyaları açma ve kaydetme yetenekleriyle donatmak istediğimiz için bu işleri yapacak fonksiyonlar eklemeliyiz. Fonksiyonlar Qt&#8217;nin sinyal/yuva mekanizması üzerinden çağrıldığından bu fonksiyonları yuva olarak tanımlamalıyız. Başlık dosyasında yuva kullandığımız için de <tt class="docutils literal"><span class="pre">Q_OBJECT</span></tt> makrosunu eklemeliyiz.</p>
+<p>Ayrıca açılan dosyaları takip etmek istediğimiz için fileName isminde bir <tt class="docutils literal"><span class="pre">QString</span></tt> deklare ediyoruz.</p>
+<div class="highlight-c++"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#ifndef MAINWINDOW_H</span>
+<span class="cp">#define MAINWINDOW_H</span>
+
+<span class="cp">#include &lt;KXmlGuiWindow&gt;</span>
+<span class="cp">#include &lt;KTextEdit&gt;</span>
+
+<span class="k">class</span> <span class="nc">MainWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="n">KXmlGuiWindow</span>
+<span class="p">{</span>
+  <span class="n">Q_OBJECT</span>
+
+  <span class="nl">public:</span>
+    <span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="nl">private:</span>
+    <span class="n">KTextEdit</span><span class="o">*</span> <span class="n">textArea</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">setupActions</span><span class="p">();</span>
+    <span class="n">QString</span> <span class="n">fileName</span><span class="p">;</span>
+
+  <span class="k">private</span> <span class="n">slots</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">newFile</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">openFile</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">saveFile</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">saveFileAs</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">saveFileAs</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">outputFileName</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</td></tr></table></div>
+<p>Önceki örnektekinden çok da farklı olmayan bir <tt class="docutils literal"><span class="pre">tutorial4ui.rc</span></tt> oluşturuyoruz. KDE&#8217;nin kendisi halledeceği için <tt class="docutils literal"><span class="pre">KStandardActions</span></tt> eylemlerinin yerleşimi hakkında herhangi bir bilgi eklememiz gerekmiyor.</p>
+<div class="highlight-xml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;gui</span> <span class="na">name=</span><span class="s">&quot;tutorial4&quot;</span>
+     <span class="na">version=</span><span class="s">&quot;1&quot;</span>
+     <span class="na">xmlns=</span><span class="s">&quot;http://www.kde.org/standards/kxmlgui/1.0&quot;</span>
+     <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+     <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.kde.org/standards/kxmlgui/1.0</span>
+<span class="s">                         http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd&quot;</span> <span class="nt">&gt;</span>
+
+  <span class="nt">&lt;MenuBar&gt;</span>
+    <span class="nt">&lt;Menu</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span> <span class="nt">&gt;</span>
+      <span class="nt">&lt;Action</span> <span class="na">name=</span><span class="s">&quot;clear&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/Menu&gt;</span>
+  <span class="nt">&lt;/MenuBar&gt;</span>
+
+  <span class="nt">&lt;ToolBar</span> <span class="na">name=</span><span class="s">&quot;mainToolBar&quot;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;text&gt;</span>Main Toolbar<span class="nt">&lt;/text&gt;</span>
+    <span class="nt">&lt;Action</span> <span class="na">name=</span><span class="s">&quot;clear&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/ToolBar&gt;</span>
+
+<span class="nt">&lt;/gui&gt;</span>
+</pre></div>
+</td></tr></table></div>
+<p>Şimdi <tt class="docutils literal"><span class="pre">mainwindow.cpp</span></tt> dosyasını detaylıca inceleyelim:</p>
+<div class="highlight-c++"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#include &quot;mainwindow.h&quot;</span>
+
+<span class="cp">#include &lt;KApplication&gt;</span>
+<span class="cp">#include &lt;KAction&gt;</span>
+<span class="cp">#include &lt;KLocale&gt;</span>
+<span class="cp">#include &lt;KActionCollection&gt;</span>
+<span class="cp">#include &lt;KStandardAction&gt;</span>
+
+<span class="cp">#include &lt;KFileDialog&gt;</span>
+<span class="cp">#include &lt;KMessageBox&gt;</span>
+<span class="cp">#include &lt;KIO/NetAccess&gt;</span>
+<span class="cp">#include &lt;KSaveFile&gt;</span>
+<span class="cp">#include &lt;QTextStream&gt;</span>
+
+<span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">KXmlGuiWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span>
+      <span class="n">fileName</span><span class="p">(</span><span class="n">QString</span><span class="p">())</span>
+<span class="p">{</span>
+  <span class="n">textArea</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KTextEdit</span><span class="p">;</span>
+  <span class="n">setCentralWidget</span><span class="p">(</span><span class="n">textArea</span><span class="p">);</span>
+
+  <span class="n">setupActions</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">setupActions</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">KAction</span><span class="o">*</span> <span class="n">clearAction</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KAction</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="n">clearAction</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">i18n</span><span class="p">(</span><span class="s">&quot;Clear&quot;</span><span class="p">));</span>
+  <span class="n">clearAction</span><span class="o">-&gt;</span><span class="n">setIcon</span><span class="p">(</span><span class="n">KIcon</span><span class="p">(</span><span class="s">&quot;document-close&quot;</span><span class="p">));</span>
+  <span class="n">clearAction</span><span class="o">-&gt;</span><span class="n">setShortcut</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">CTRL</span> <span class="o">+</span> <span class="n">Qt</span><span class="o">::</span><span class="n">Key_W</span><span class="p">);</span>
+  <span class="n">actionCollection</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addAction</span><span class="p">(</span><span class="s">&quot;clear&quot;</span><span class="p">,</span> <span class="n">clearAction</span><span class="p">);</span>
+  <span class="n">connect</span><span class="p">(</span><span class="n">clearAction</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">triggered</span><span class="p">(</span><span class="kt">bool</span><span class="p">)),</span>
+          <span class="n">textArea</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">clear</span><span class="p">()));</span>
+
+  <span class="n">KStandardAction</span><span class="o">::</span><span class="n">quit</span><span class="p">(</span><span class="n">kapp</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">quit</span><span class="p">()),</span>
+                        <span class="n">actionCollection</span><span class="p">());</span>
+
+  <span class="n">KStandardAction</span><span class="o">::</span><span class="n">open</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">openFile</span><span class="p">()),</span>
+                        <span class="n">actionCollection</span><span class="p">());</span>
+
+  <span class="n">KStandardAction</span><span class="o">::</span><span class="n">save</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">saveFile</span><span class="p">()),</span>
+                        <span class="n">actionCollection</span><span class="p">());</span>
+
+  <span class="n">KStandardAction</span><span class="o">::</span><span class="n">saveAs</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">saveFileAs</span><span class="p">()),</span>
+                        <span class="n">actionCollection</span><span class="p">());</span>
+
+  <span class="n">KStandardAction</span><span class="o">::</span><span class="n">openNew</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">newFile</span><span class="p">()),</span>
+                        <span class="n">actionCollection</span><span class="p">());</span>
+
+  <span class="n">setupGUI</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">newFile</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">fileName</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+  <span class="n">textArea</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">saveFileAs</span><span class="p">(</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">outputFileName</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">KSaveFile</span> <span class="n">file</span><span class="p">(</span><span class="n">outputFileName</span><span class="p">);</span>
+  <span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">();</span>
+
+  <span class="n">QByteArray</span> <span class="n">outputByteArray</span><span class="p">;</span>
+  <span class="n">outputByteArray</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">textArea</span><span class="o">-&gt;</span><span class="n">toPlainText</span><span class="p">().</span><span class="n">toUtf8</span><span class="p">());</span>
+  <span class="n">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">outputByteArray</span><span class="p">);</span>
+  <span class="n">file</span><span class="p">.</span><span class="n">finalize</span><span class="p">();</span>
+  <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+
+  <span class="n">fileName</span> <span class="o">=</span> <span class="n">outputFileName</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">saveFileAs</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">saveFileAs</span><span class="p">(</span><span class="n">KFileDialog</span><span class="o">::</span><span class="n">getSaveFileName</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">saveFile</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">fileName</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="n">saveFileAs</span><span class="p">(</span><span class="n">fileName</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">saveFileAs</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">openFile</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">QString</span> <span class="n">fileNameFromDialog</span> <span class="o">=</span> <span class="n">KFileDialog</span><span class="o">::</span><span class="n">getOpenFileName</span><span class="p">();</span>
+
+  <span class="n">QString</span> <span class="n">tmpFile</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">KIO</span><span class="o">::</span><span class="n">NetAccess</span><span class="o">::</span><span class="n">download</span><span class="p">(</span><span class="n">fileNameFromDialog</span><span class="p">,</span> <span class="n">tmpFile</span><span class="p">,</span> <span class="k">this</span><span class="p">))</span>
+  <span class="p">{</span>
+    <span class="n">QFile</span> <span class="n">file</span><span class="p">(</span><span class="n">tmpFile</span><span class="p">);</span>
+    <span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">QIODevice</span><span class="o">::</span><span class="n">ReadOnly</span><span class="p">);</span>
+    <span class="n">textArea</span><span class="o">-&gt;</span><span class="n">setPlainText</span><span class="p">(</span><span class="n">QTextStream</span><span class="p">(</span><span class="o">&amp;</span><span class="n">file</span><span class="p">).</span><span class="n">readAll</span><span class="p">());</span>
+    <span class="n">fileName</span> <span class="o">=</span> <span class="n">fileNameFromDialog</span><span class="p">;</span>
+
+    <span class="n">KIO</span><span class="o">::</span><span class="n">NetAccess</span><span class="o">::</span><span class="n">removeTempFile</span><span class="p">(</span><span class="n">tmpFile</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">KMessageBox</span><span class="o">::</span><span class="n">error</span><span class="p">(</span><span class="k">this</span><span class="p">,</span>
+        <span class="n">KIO</span><span class="o">::</span><span class="n">NetAccess</span><span class="o">::</span><span class="n">lastErrorString</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Yaptığımız ilk şey <tt class="docutils literal"><span class="pre">MainWindow</span></tt> kurucusuna <tt class="docutils literal"><span class="pre">fileName(QString())</span></tt> ifadesini eklemek. Bu, ilk başlangıç anından itibaren fileName&#8217;in boş olmasını garanti ediyor.</p>
+<p>Sonra <tt class="docutils literal"><span class="pre">KStandardActions</span></tt> eylemleriyle kullanıcıların uygulamaya dosyayı yüklemesini veya kaydetmesini söyleyebileceği dış arayüzü oluşturuyoruz. Eylemlerin hepsini de başlık dosyasında deklare ettiğimiz uygun yuvalara bağlıyoruz.</p>
+<p>Oluşturduğumuz ilk fonksiyon yeni bir belge oluşturan <tt class="docutils literal"><span class="pre">newFile()</span></tt> fonksiyonu. <tt class="docutils literal"><span class="pre">fileName.clear()</span></tt>, henüz belge sabit disk üzerinde kayıtlı olmadığı için fileName isimli QString&#8217;i boş olarak ayarlar. Sonra <tt class="docutils literal"><span class="pre">textArea-&gt;clear()</span></tt> da merkezi metin alanının içini temizler.</p>
+<p>Şimdi ilk dosya işleme kodumuzun üzerindeyiz. Metin alanının içeriğini parametre olarak verilen dosya ismine kaydeden bir fonksiyon gerçekleştireceğiz. KDE dosyaları güvenle kaydetmek için Qt&#8217;nin <tt class="docutils literal"><span class="pre">QFile</span></tt> sınıfından türetilmiş <tt class="docutils literal"><span class="pre">KSaveFile</span></tt> sınıfı sunar.</p>
+<p><tt class="docutils literal"><span class="pre">void</span> <span class="pre">MainWindow::saveFileAs(const</span> <span class="pre">QString</span> <span class="pre">&amp;outputFileName)</span></tt> ile fonksiyonun prototipini, <tt class="docutils literal"><span class="pre">KSaveFile</span> <span class="pre">file(outputFileName);</span></tt> ile KSaveFile nesnesini oluşturuyoruz ve <tt class="docutils literal"><span class="pre">file.open();</span></tt> ile dosyayı açıyoruz.</p>
+<p>Şimdi yazmak için hazır bir dosyaya sahibiz. Metin alanındaki metni dosyaya kaydedilebileceği şekilde biçimlendirmemiz gerekiyor. Bunun için <tt class="docutils literal"><span class="pre">QByteArray</span> <span class="pre">outputByteArray;</span></tt> ile bir <tt class="docutils literal"><span class="pre">QByteArray</span></tt> oluşturuyor ve <tt class="docutils literal"><span class="pre">outputByteArray.append(textArea-&gt;toPlainText().toUtf8());</span></tt> ile içini metin alanında her ne varsa onun düz metin haliyle dolduruyoruz.</p>
+<p>QByteArray&#8217;ı <tt class="docutils literal"><span class="pre">KSaveFile::write()</span></tt> ile dosyaya yazmak için kullanacağız. Eğer normal bir QFile kullanıyor olsaydık bu değişikliklerin hemen yansımasına neden olacaktı. Bu da yazma sırasında bir hata oluşması durumunda dosyanın bozulmasına neden olur. Bu nedenle <tt class="docutils literal"><span class="pre">KSaveFile</span></tt> ilk önce geçici bir dosyaya yazar ve <tt class="docutils literal"><span class="pre">KSaveFile::finalize()</span></tt> çağrısı yaptığınızda asıl dosyada değişiklik yapar.</p>
+<p>Burada son olarak da <tt class="docutils literal"><span class="pre">fileName</span> <span class="pre">=</span> <span class="pre">outputFileName;</span></tt> ile MainWindow&#8217;un fileName üyesini kaydettiğimiz dosyanın ismini gösterecek şekilde ayarlıyoruz.</p>
+<p><tt class="docutils literal"><span class="pre">saveFileAs()</span></tt>, saveAs yuvasına bağlanan fonksiyon. Sadece genel <tt class="docutils literal"><span class="pre">saveFileAs(QString)</span></tt> fonksiyonunu çağırır ve <tt class="docutils literal"><span class="pre">KFileDialog::getSaveFileName()</span></tt> tarafından döndürülen dosya ismini geçer.</p>
+<p>Bu KIO kütüphanesini kullandığımız ilk an. <tt class="docutils literal"><span class="pre">KFileDialog</span></tt>, genel dosya iletişim pencereleri göstermek için tüm KDE uygulamalarınca kullanılan çeşitli statik fonksiyonlar sunar. <tt class="docutils literal"><span class="pre">KFileDialog::getSaveFileName()</span></tt> çağrısı kullanıcıya dosya ismi seçebileceği bir iletişim penceresi gösterir. Fonksiyon daha sonra <tt class="docutils literal"><span class="pre">saveFileAs(QString)</span></tt> fonksiyonuna geçeceğimiz tam dosya ismini döndürür.</p>
+<p><tt class="docutils literal"><span class="pre">saveFile()</span></tt> fonksiyonunda yeni veya heyecen verici bir şey bulunmamakta. Sadece kaydetme iletişim penceresinin gösterilip gösterilmeyeceğini belirliyor. fileName boş değilse dosya fileName&#8217;a kaydediliyor. Ama eğer boşsa kullanıcıya isim seçebilmesi için iletişim penceresi gösteriliyor.</p>
+<p>Sonunda sabit diskten dosya yükleyebilecek duruma geldik. Bunu yapacak kodların hepsi <tt class="docutils literal"><span class="pre">MainWindow::openFile()</span></tt> fonksiyonunda bulunuyor. İlk önce kullanıcıya açmak istediği dosya ismini sormalıyız. Bunu bir başka KFileDialog fonksiyonu olan <tt class="docutils literal"><span class="pre">getOpenFileName()</span></tt> ile yapıyoruz.</p>
+<p>Daha sonra KIO kütüphanesini kullanarak dosyayı alıyoruz. Bu bize dosyayı QFile kullanarak FTP gibi uzak bir konumda bulunsa bile açma imkanı verir.</p>
+<p>Sonraki çağrımızı <tt class="docutils literal"><span class="pre">KIO::NetAccess::download(fileNameFromDialog,</span> <span class="pre">tmpFile,</span> <span class="pre">this)</span></tt> ile <tt class="docutils literal"><span class="pre">NetAccess's</span> <span class="pre">download()</span></tt> fonksiyonuna yapıyoruz. İlk argüman yüklemek istediğimiz dosyanın ismi. İkinci argüman, dosyanın yüklenmesi tamamlandıktan sonra dosyanın geçici kopyasının konumunu saklayacak bir <tt class="docutils literal"><span class="pre">QString</span></tt>. Bundan sonra çalışacağımız dosya <tt class="docutils literal"><span class="pre">tmpFile</span></tt>.</p>
+<p>Bu fonksiyon transferin başarılı geçip geçmediğine bağlı olarak <tt class="docutils literal"><span class="pre">true</span></tt> veya <tt class="docutils literal"><span class="pre">false</span></tt> döndürür. Eğer başarısız olursa <tt class="docutils literal"><span class="pre">KMessageBox::error(this,</span> <span class="pre">KIO::NetAccess::lastErrorString());</span></tt> ile hatayı veren bir mesaj kutusu gösteriyoruz. Başarılı olursa dosyayı açarak devam ediyoruz.</p>
+<p><tt class="docutils literal"><span class="pre">QFile</span> <span class="pre">file(tmpFile);</span></tt> ile geçici dosyadan bir QFile oluşturuyor ve <tt class="docutils literal"><span class="pre">file.open(QIODevice::ReadOnly);</span></tt> ile sadece okunur kipte açıyoruz.</p>
+<p>Dosyanın içeriğini görüntüleyebilmek için bir <tt class="docutils literal"><span class="pre">QTextStream</span></tt> kullanmalıyız. Dosyamızın içeriğini yapıcısına geçerek bir tane oluşturuyor ve sonra QFile&#8217;ın <tt class="docutils literal"><span class="pre">readAll()</span></tt> fonksiyonunu çağırarak dosyadan metni alıyoruz. Daha sonra da bunu <tt class="docutils literal"><span class="pre">textArea-&gt;setPlainText(QTextStream(&amp;file).readAll());</span></tt> ile metin alanımızın <tt class="docutils literal"><span class="pre">setPlainText()</span></tt> fonksiyonuna geçiyoruz.</p>
+<p>Daha sonra yeni açtığımız dosyanın yolunu <tt class="docutils literal"><span class="pre">fileName</span> <span class="pre">=</span> <span class="pre">fileNameFromDialog;</span></tt> kaydediyoruz ve son olarak da <tt class="docutils literal"><span class="pre">KIO::NetAccess::removeTempFile(tmpFile);</span></tt> ile geçici dosyayı siliyoruz.</p>
+</div>
+<div class="section" id="insa">
+<h2>İnşa<a class="headerlink" href="#insa" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
+<p>Bu sefer KIO kütüphanesini de kullandığımız için <tt class="docutils literal"><span class="pre">target_link_libraries()</span></tt> fonsiyonuna <tt class="docutils literal"><span class="pre">${KDE4_KIO_LIBS}</span></tt> değerini geçerek CMake&#8217;e KIO&#8217;yu da bağlamasını söylemeliyiz.</p>
+<div class="highlight-cmake"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">project</span><span class="p">(</span><span class="s">tutorial4</span><span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">KDE4</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">KDE4_INCLUDES</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">tutorial4_SRCS</span>
+  <span class="s">main.cpp</span>
+  <span class="s">mainwindow.cpp</span>
+<span class="p">)</span>
+
+<span class="nb">kde4_add_executable</span><span class="p">(</span><span class="s">tutorial4</span> <span class="o">${</span><span class="nv">tutorial4_SRCS</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">tutorial4</span> <span class="o">${</span><span class="nv">KDE4_KDEUI_LIBS</span><span class="o">}</span>
+                                <span class="o">${</span><span class="nv">KDE4_KIO_LIBS</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span> <span class="s">tutorial4</span> <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">BIN_INSTALL_DIR</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">FILES</span> <span class="s">tutorial4ui.rc</span>
+        <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">DATA_INSTALL_DIR</span><span class="o">}</span><span class="s">/tutorial4</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="derleme-ve-calistirma">
+<h2>Derleme ve Çalıştırma<a class="headerlink" href="#derleme-ve-calistirma" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
+<p>Tüm dosyalarımızın yazımını tamamladığımıza göre çalıştırmak için derleyip, bağlayabiliriz:</p>
+<div class="highlight-bash"><div class="highlight"><pre>mkdir build
+<span class="nb">cd </span>build
+cmake .. -DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$HOME</span>
+make
+make install
+<span class="nv">$HOME</span>/bin/tutorial4
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Not</p>
+<p class="last">Değişen ayarlar KDE&#8217;nin uygulama ayarlarını sakladığı dizinde tutulur, bu örneğimizin ayarları $HOME/.kde/share/apps/tutorial4 dizininde bulunur.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Dizin"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="02-KActions-kullanimi.html" title="KActions Kullanımı"
+             >önceki</a> |</li>
+        <li><a href="../index.html">KDE Gelistirme</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Anıl Özbek.
+      <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3 ile oluşturulmuştur.
+    </div>
+  </body>
+</html>
