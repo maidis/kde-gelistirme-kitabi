@@ -17,6 +17,7 @@ KDE Geliştirme
    05/01-KXmlGuiWindow-kullanimi.rst
    05/02-KActions-kullanimi.rst
    05/03-dosya-acma-kaydetme.rst
+   05/04-komut-satiri-argumanlari.rst
 
 
 İndeks ve Tablolar
