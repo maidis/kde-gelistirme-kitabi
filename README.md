@@ -4,6 +4,7 @@ kde-gelistirme-kitabi
 KDE geliştirme hakkında bir Türkçe kitap projesi
 
 **İçerik**
+
 1. Genel Olarak KDE
 - KDE Uygulamaları
 - KDE Geliştirme Araçları ve Süreçleri
