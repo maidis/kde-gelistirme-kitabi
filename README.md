@@ -4,21 +4,21 @@ kde-gelistirme-kitabi
 KDE geliştirme hakkında bir Türkçe kitap projesi
 
 **İçerik**
-* Genel Olarak KDE
-* KDE Uygulamaları
-* KDE Geliştirme Araçları ve Süreçleri
-* KDE Projelerine Katkı Vermek
-* Yeni Bir KDE Uygulaması Geliştirmek
-* Yeni Bir KDE Oyunu Geliştirmek
-* Plasma ve Programcıklar
-* KDE Yerelleştirme Çalışmaları
-* KDE Belgelendirme Çalışmaları
-* KDE Yazılımlarını Paketlemek
-* Qt
-* QML
-* CMake
-* D-Bus
-* Git
+# Genel Olarak KDE
+# KDE Uygulamaları
+# KDE Geliştirme Araçları ve Süreçleri
+# KDE Projelerine Katkı Vermek
+# Yeni Bir KDE Uygulaması Geliştirmek
+# Yeni Bir KDE Oyunu Geliştirmek
+# Plasma ve Programcıklar
+# KDE Yerelleştirme Çalışmaları
+# KDE Belgelendirme Çalışmaları
+# KDE Yazılımlarını Paketlemek
+# Qt
+# QML
+# CMake
+# D-Bus
+# Git
 
 **KDE Kaynakları ve Benzer projeler**
 * http://sourceforge.net/projects/kde20devel/
