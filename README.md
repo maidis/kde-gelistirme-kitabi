@@ -23,6 +23,7 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 
 **KDE Kaynakları ve Benzer projeler**
 * http://sourceforge.net/projects/kde20devel/
+* http://www.amazon.com/KDE-Bible-David-Nash/dp/0764546929
 * http://techbase.kde.org/
 * http://flossmanuals.net/kde-guide/
 * https://code.google.com/p/kde42qt45book/
