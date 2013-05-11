@@ -11,9 +11,13 @@ KDE geliştirme hakkında bir Türkçe kitap projesi
 - KDE Projelerine Katkı Vermek
 - Yeni Bir KDE Uygulaması Geliştirmek
 - Yeni Bir KDE Oyunu Geliştirmek
+- Yeni Bir KDE Grafik Uygulaması Geliştirmek
+- Yeni Bir KDE Çokluortam Uygulaması Geliştirmek
 - Plasma ve Programcıklar
 - KDE Yerelleştirme Çalışmaları
 - KDE Belgelendirme Çalışmaları
+- KDE Güvenlik Çalışmaları
+- KDE Kalite Çalışmaları
 - KDE Yazılımlarını Paketlemek
 - Qt
 - QML
